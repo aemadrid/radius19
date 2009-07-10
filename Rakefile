@@ -8,7 +8,7 @@ begin
     gem.summary = %Q{A small, but powerful tag-based template language for Ruby modeled after the ones used in MovableType and TextPattern. It has tags similar to XML, but can be used to generate any form of plain text (HTML, e-mail, etc...) adapted to work on Ruby 1.9.}
     gem.email = "aemadrid@gmail.com"
     gem.homepage = "http://github.com/aemadrid/radius19"
-    gem.authors = ["Adrian Madrid"]
+    gem.authors = ["Adrian Madrid", "John W. Long"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 
