@@ -14,24 +14,6 @@ module Radius
 
       protected
 
-      # Adds the tag definition to the context. Override in subclasses to add additional tags
-      # (child tags) when the tag is created.
-      def construct_tag_set(name, options, &block)
-        if block
-          @context.definitions[name.to_s] = block
-        else
-          lp = last_part(name)
-          @context.define_tag(name) do |tag|
-            if tag.single?
-              options[:for]
-            else
-              tag.locals.send("#{ lp }=", options[:for]) unless options[:for].nil?
-              tag.expand
-            end
-          end
-        end
-      end
-
       # Normalizes options pased to tag definition. Override in decendants to preform
       # additional normalization.
       def prepare_options(name, options)
@@ -49,6 +31,24 @@ module Radius
         unless options.has_key? :for
           raise ArgumentError.new("tag definition must contain a :for option or a block") unless block
           raise ArgumentError.new("tag definition must contain a :for option when used with the :expose option") unless options[:expose].empty?
+        end
+      end
+
+      # Adds the tag definition to the context. Override in subclasses to add additional tags
+      # (child tags) when the tag is created.
+      def construct_tag_set(name, options, &block)
+        if block
+          @context.definitions[name.to_s] = block
+        else
+          lp = last_part(name)
+          @context.define_tag(name) do |tag|
+            if tag.single?
+              options[:for]
+            else
+              tag.locals.send("#{ lp }=", options[:for]) unless options[:for].nil?
+              tag.expand
+            end
+          end
         end
       end
 

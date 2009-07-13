@@ -238,5 +238,5 @@ class RadiusParserTest < Test::Unit::TestCase
     def user_with_attributes
       UserWithAttributes.new('John', 25, 'test@johnwlong.com')
     end
-  
+
 end
