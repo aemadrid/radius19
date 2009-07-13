@@ -25,7 +25,7 @@ module Radius
 
     # Parses string for tags, expands them, and returns the result.
     def parse(string)
-      @stack = [ParseContainerTag.new { |t| t.contents.to_s }]
+      @stack = [ParseContainerTag.new { |t| t.contents.map{|x| x.to_s}.join }]
       pre_parse(string)
       @stack.last.to_s
     end
