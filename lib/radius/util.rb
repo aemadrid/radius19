@@ -26,5 +26,9 @@ module Radius
       underscored_string.split('_').each { |part| string << part.capitalize }
       string
     end
+
+    def self.recurring_array_to_s(ary)
+      ary.map{|x| x.is_a?(Array) ? recurring_array_to_s(x) : x.to_s }.join
+    end
   end
 end

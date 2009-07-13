@@ -1,9 +1,9 @@
 module Radius
-#
-# The Radius parser. Initialize a parser with a Context object that
-# defines how tags should be expanded. See the QUICKSTART[link:files/QUICKSTART.html]
-# for a detailed explaination of its usage.
-#
+  #
+  # The Radius parser. Initialize a parser with a Context object that
+  # defines how tags should be expanded. See the QUICKSTART[link:files/QUICKSTART.html]
+  # for a detailed explaination of its usage.
+  #
   class Parser
     # The Context object used to expand template tags.
     attr_accessor :context
@@ -25,7 +25,7 @@ module Radius
 
     # Parses string for tags, expands them, and returns the result.
     def parse(string)
-      @stack = [ParseContainerTag.new { |t| t.contents.map{|x| x.to_s}.join }]
+      @stack = [ParseContainerTag.new { |t| Util.recurring_array_to_s(t.contents) }]
       pre_parse(string)
       @stack.last.to_s
     end
@@ -60,7 +60,9 @@ module Radius
     def parse_end_tag(end_tag, remaining) # :nodoc:
       popped = @stack.pop
       if popped.name == end_tag
-        popped.on_parse { |t| @context.render_tag(popped.name, popped.attributes) { t.contents.map{|x| x.to_s } } }
+        popped.on_parse do |t|
+          @context.render_tag(popped.name, popped.attributes) { Util.recurring_array_to_s(t.contents) }
+        end
         tag = @stack.last
         tag.contents << popped
         pre_parse(remaining)
