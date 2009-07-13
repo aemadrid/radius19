@@ -60,7 +60,7 @@ module Radius
     def parse_end_tag(end_tag, remaining) # :nodoc:
       popped = @stack.pop
       if popped.name == end_tag
-        popped.on_parse { |t| @context.render_tag(popped.name, popped.attributes) { t.contents.to_s } }
+        popped.on_parse { |t| @context.render_tag(popped.name, popped.attributes) { t.contents.map{|x| x.to_s } } }
         tag = @stack.last
         tag.contents << popped
         pre_parse(remaining)
