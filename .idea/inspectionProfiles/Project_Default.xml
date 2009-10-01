@@ -1,0 +1,11 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0" is_locked="false">
+    <option name="myName" value="Project Default" />
+    <option name="myLocal" value="false" />
+    <inspection_tool class="RubyCodeStyle" level="WARNING" enabled="false" />
+    <inspection_tool class="RubyArgCount" level="ERROR" enabled="false" />
+    <inspection_tool class="RubyConstAlreadyInitialized" level="WARNING" enabled="true" />
+    <inspection_tool class="RubyConstant" level="ERROR" enabled="false" />
+    <inspection_tool class="RubyWrongHash" level="ERROR" enabled="false" />
+  </profile>
+</component>
