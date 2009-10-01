@@ -1,4 +1,7 @@
 = Change Log
 
+=== 0.5.3
+* Patched to work under Ruby 1.9
+
 === 0.5.2
 * Original import from Radius (Ruby 1.8)
